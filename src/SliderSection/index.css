@@ -1,0 +1,43 @@
+
+.slick-next{
+     position: absolute;
+    inset:auto auto 0% 6%;
+}
+.slick-prev{
+    position: absolute;
+    inset:auto auto 0% 0%;
+}
+.slick-slider{
+    position: relative;
+    padding-bottom:25px;
+}
+
+.sliderImage{
+    width:100%;
+}
+.slick-dots{
+    display: none !important;
+}
+.slick-track{
+    display: flex;
+}
+.slider-container{
+    width:100%;
+}
+.slider-main-container{
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top:48px;
+    padding-bottom: 64px;
+     padding-left: 16px;
+     padding-right: 16px;
+    overflow: hidden;
+}
+
+
+.slider-section{
+    width:100%;
+    background-color: #FFFFFF;
+    
+}

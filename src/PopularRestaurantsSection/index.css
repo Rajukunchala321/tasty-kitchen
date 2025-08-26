@@ -1,0 +1,46 @@
+
+
+
+
+.pouplar-restaurants-main-container>h2{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    color:#183B56;
+    margin-bottom: 8px;
+    margin-top: 0px;
+
+}
+.pouplar-restaurants-main-container> div{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 24px;
+        border-bottom: 1px solid #CBD2D9;
+}
+.pouplar-restaurants-main-container> div>p{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color:#64748B;
+    margin:0px;
+}
+
+.pouplar-restaurants-main-container{
+     max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top:48px;
+    padding-bottom: 64px;
+    padding-left: 16px;
+     padding-right: 16px;
+}
+.filter-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:12px;
+
+}
