@@ -1,7 +1,84 @@
 
 
+.pagination-num{
+    color:#334155;
+    padding:8px 12px;
+    font-size: 18px;
+    border-radius: 8px;
+    border:1px solid #334155;
+    cursor:pointer;
+}
+center{
+    margin-top: 24px;
+    display: flex;
+    flex-direction: row;
+    gap:12px;
+    align-items: center;
+    justify-content: center;
+}
 
+.rating-members{
+     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+    font-weight: 400px;
+    color:#64748B;
+     margin: 0px;
 
+}
+.rating{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    font-weight: 400px;
+    color:#1E293B;
+    margin: 0px;
+
+}
+.restaurant-container{
+    padding-top:48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+    grid-column-gap:32px;
+    grid-row-gap:32px;
+
+}
+
+.rest-rating-container{
+    display: flex;
+    flex-direction: row;
+    gap:4px;
+    justify-content: center;
+    align-items: center;
+}
+.rest-type-food{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 18px;
+    font-weight: 400px;
+    color:#64748B;
+     margin: 0px;
+}
+.rest-name{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 18px;
+    font-weight: 600px;
+    color:#334155;
+    margin: 0px;
+}
+
+.restaurant-content{
+    display: flex;
+    flex-direction: column;
+    gap:14px;
+}
+.restaurant-logo{
+    width:160px;
+}
+
+.restaurant{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap:16px;
+}
 .pouplar-restaurants-main-container>h2{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 32px;
@@ -11,7 +88,7 @@
     margin-top: 0px;
 
 }
-.pouplar-restaurants-main-container> div{
+.par-container{
         display: flex;
         flex-direction: row;
         width: 100%;

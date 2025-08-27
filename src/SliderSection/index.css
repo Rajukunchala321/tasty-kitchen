@@ -20,6 +20,7 @@
 }
 .slick-track{
     display: flex;
+    gap:24px;
 }
 .slider-container{
     width:100%;

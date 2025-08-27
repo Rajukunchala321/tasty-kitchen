@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.css'
 import Slider from "react-slick";
+import PopularRestaurantsSection from '../PopularRestaurantsSection/Index.js';
 
 export default function index() {
      var settings = {
@@ -26,6 +27,7 @@ export default function index() {
         img:"./assests/banner.png"
     }]
   return (
+   <>
     <section className='slider-section'>
         <div className='slider-main-container'>
             <div className='slider-container'>
@@ -42,5 +44,7 @@ export default function index() {
             </div>
         </div>
     </section>
+    <PopularRestaurantsSection />
+    </>
   )
 }
