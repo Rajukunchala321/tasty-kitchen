@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import'./Index.css'
+import {Navigate} from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 export class Index extends Component {
     state={
         username:'',
         password:'',
+        showSubmitError:false,
+        errorMsg:''
     }
    
     onChangeUsername =(event)=>{
@@ -33,14 +38,41 @@ export class Index extends Component {
             </>
         )
     }
-    sumitForm =(event)=>{
+    
+       sumitForm = async (event)=>{
         event.preventDefault()
         const {username, password} = this.state;
-        console.log(username)
-        console.log(password)
+        const userDetails = {username, password};
+        try{
+            const response = await axios.post('https://apis.ccbp.in/login',
+            JSON.stringify(userDetails),
+        )
+        
+            const jwtToken =response.data.jwt_token;
+             // storing jwt token 
+            Cookies.set('jwt_token',jwtToken,{
+                expires:30,
+                path:'/',
+            } )
+             this.props.navigate("/", { replace: true });
+
+
+        }catch(error){
+            console.log(error);
+            this.setState({showSubmitError:true, errorMsg:error})
+
+        }
+
+        
 
     }
+   
   render() {
+    const {showSubmitError, errorMsg} = this.state;
+    const jwtToken = Cookies.get("jwt_token");
+    if(jwtToken !== undefined){
+        return <Navigate to='/' replace />
+    }
     return (
       <section className='form-section'>
         <div className='form-main-container'>
@@ -54,7 +86,8 @@ export class Index extends Component {
                     <form onSubmit={this.sumitForm}>
                         <div className='input-container'>{this.renderUserNameField()}</div>
                         <div className='input-container'>{this.renderUserPasswordField()}</div>
-                        <button type='sumit' >Login</button>
+                        <button type='submit' >Login</button>
+                        {showSubmitError && <p className='errormsg'>*{errorMsg}</p>}
                     </form>
 
                 </div>

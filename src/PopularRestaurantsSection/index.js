@@ -1,27 +1,33 @@
 import React, {useState, useEffect } from "react";
 import axios from "axios";
 import "./Index.css";
-import Pagination from "./Pagination";
+import Cookies from "js-cookie";
 const Index = () => {
+     const jwtToken = Cookies.get("jwt_token");
     const [resturantsList, setResturantsList] = useState([]);
     const [perpage, setPerpage] = useState([]);
     useEffect(()=>{
-        axios.get('https://jsonplaceholder.typicode.com/albums')
-        .then((response)=>{
-           setResturantsList(response.data);
-           setPerpage(response.data.slice(0, 9));
 
-        }).catch((error)=>{
-            console.log(error)
-        })
+     const fecth = async ()=>{
+        if(!jwtToken){
+          return;
+        }
+        try{
+          const response = await axios.get('https://apis.ccbp.in/restaurants-list', 
+            {
+              headers: {
+                Authorization: `Bearer ${jwtToken}`
+              }
+          })
+          console.log(response.data)
 
+        }catch(err){
+          console.log(err)
+        }
+
+     }
+     fecth()
     },[])
-
-  const pagenationHandle =(pageNumber)=>{
-     setPerpage(resturantsList.slice((pageNumber*9)-9, pageNumber*9));
-
-  }
-
 
   return (
    
@@ -74,7 +80,7 @@ const Index = () => {
           }
          
         </div>
-           <Pagination pagenationHandle={pagenationHandle} data={resturantsList} />
+           
 
        </div>
        
