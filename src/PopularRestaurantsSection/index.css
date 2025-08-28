@@ -1,5 +1,22 @@
 
-
+.arrow-btn{
+    padding: 8px;
+    background-color: transparent;
+    border: 1px solid #334155;
+    cursor: pointer;
+}
+.pagination-container{
+    display: flex;
+    flex-direction: row;
+    gap:12px;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 400;
+    line-height: 100%;
+    color:#334155;
+}
 .pagination-num{
     color:#334155;
     padding:8px 12px;

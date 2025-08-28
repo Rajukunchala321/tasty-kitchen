@@ -3,31 +3,50 @@ import axios from "axios";
 import "./Index.css";
 import Cookies from "js-cookie";
 const Index = () => {
-     const jwtToken = Cookies.get("jwt_token");
+   
+    const limit =9;
+    const jwtToken = Cookies.get("jwt_token");
     const [resturantsList, setResturantsList] = useState([]);
-    const [perpage, setPerpage] = useState([]);
+    const [loading , setLoading] = useState(true);
+    const [activePage, setactivePage] = useState(1);
+    const [totalItems, setTotalItems] = useState(0);
+   
     useEffect(()=>{
-
-     const fecth = async ()=>{
+      const fetch = async()=>{
+        const offset = (activePage - 1)*limit
+        console.log(offset)
         if(!jwtToken){
-          return;
+            return;
         }
         try{
-          const response = await axios.get('https://apis.ccbp.in/restaurants-list', 
+          const response = await axios.get(`https://apis.ccbp.in/restaurants-list?offset=${offset}&limit=${limit}`, 
             {
-              headers: {
-                Authorization: `Bearer ${jwtToken}`
-              }
+            headers:{
+              Authorization: `Bearer ${jwtToken}`,
+            }
           })
-          console.log(response.data)
-
+          setResturantsList(response.data.restaurants);
+          setTotalItems(response.data.total)
+          
         }catch(err){
           console.log(err)
         }
 
-     }
-     fecth()
-    },[])
+      }
+
+    fetch()
+    },[activePage]);
+   
+    const totalPages =Math.ceil(totalItems/activePage);
+    console.log(totalPages)
+    const handlePageIncrement = ()=>{
+       setactivePage(prev=>Math.min(prev+1, totalPages))
+    }
+    const handlePageDecrement = ()=>{
+       setactivePage(prev=>Math.max(prev-1, totalPages))
+    }
+
+
 
   return (
    
@@ -48,13 +67,12 @@ const Index = () => {
        <div>
          <div className="restaurant-container">
           {
-            resturantsList.length >=1? 
-            perpage.map((eachResturant)=>(
+            resturantsList.map((eachResturant)=>(
              <div className="restaurant" key={eachResturant.id}>
-            <img src="./assests/rest-logo.png" alt="restaurant" className="restaurant-logo" />
+            <img src={eachResturant.image_url} alt={`restaurant-${eachResturant.id}`} className="restaurant-logo" />
             <div className="restaurant-content">
-              <h3 className="rest-name">McDonald’s</h3>
-              <p className="rest-type-food">{eachResturant.id}</p>
+              <h3 className="rest-name">{eachResturant.name}</h3>
+              <p className="rest-type-food">{eachResturant.cuisine}</p>
               <div className="rest-rating-container">
                 <svg
                   width="12"
@@ -70,17 +88,23 @@ const Index = () => {
                     fill="#FFCC00"
                   />
                 </svg>
-                <p className="rating">4.4</p>
-                <p className="rating-members">(222 ratings)</p>
+                <p className="rating">{eachResturant.user_rating.rating}</p>
+                <p className="rating-members">({eachResturant.user_rating.total_reviews} ratings)</p>
               </div>
             </div>
           </div>
 
-          )):<p>No Data</p>
+          ))
           }
          
         </div>
-           
+           <div className="pagination-container"><button onClick={handlePageDecrement} className="arrow-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fillRule="evenodd" clipRule="evenodd" d="M9.87352 2L11 3.15074L6.25296 8L11 12.8493L9.87352 14L4.68479 8.69953C4.30425 8.3108 4.30425 7.68919 4.68479 7.30046L9.87352 2Z" fill="#334155"/>
+</svg>
+</button><div>1 of 20</div><button onClick={handlePageIncrement} className="arrow-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fillRule="evenodd" clipRule="evenodd" d="M6.12648 14L5 12.8493L9.74704 8L5 3.15074L6.12648 2L11.3152 7.30047C11.6957 7.6892 11.6957 8.31081 11.3152 8.69954L6.12648 14Z" fill="#334155"/>
+</svg>
+</button></div>
 
        </div>
        
