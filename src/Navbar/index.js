@@ -1,6 +1,6 @@
 import React from "react";
-import "./index.css";
-export default function index() {
+import "./Index.css";
+export default function Index() {
   return (
     <nav>
       <div className="nav-container">

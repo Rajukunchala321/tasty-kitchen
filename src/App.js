@@ -1,6 +1,6 @@
 import React from 'react'
 import {BrowserRouter , Route, Routes } from 'react-router-dom'
-import Navbar from './Navbar'
+import Navbar from './Navbar/Index.js'
 import SliderSection from './SliderSection/Index.js';
 import LoginForm from './LoginForm/Index.js'
 

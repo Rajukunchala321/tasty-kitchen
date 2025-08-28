@@ -7,14 +7,13 @@ const Index = () => {
     const limit =9;
     const jwtToken = Cookies.get("jwt_token");
     const [resturantsList, setResturantsList] = useState([]);
-    const [loading , setLoading] = useState(true);
+    const [loading , setLoading] = useState(false);
     const [activePage, setactivePage] = useState(1);
     const [totalItems, setTotalItems] = useState(0);
    
     useEffect(()=>{
       const fetch = async()=>{
         const offset = (activePage - 1)*limit
-        console.log(offset)
         if(!jwtToken){
             return;
         }
@@ -26,7 +25,8 @@ const Index = () => {
             }
           })
           setResturantsList(response.data.restaurants);
-          setTotalItems(response.data.total)
+          setTotalItems(response.data.total);
+          setLoading(true)
           
         }catch(err){
           console.log(err)
@@ -35,15 +35,15 @@ const Index = () => {
       }
 
     fetch()
-    },[activePage]);
+    },[activePage, jwtToken]);
    
-    const totalPages =Math.ceil(totalItems/activePage);
+    const totalPages =Math.ceil(totalItems/limit);
     console.log(totalPages)
     const handlePageIncrement = ()=>{
-       setactivePage(prev=>Math.min(prev+1, totalPages))
+       setactivePage(prev=>(prev <totalPages ? prev+1: prev))
     }
     const handlePageDecrement = ()=>{
-       setactivePage(prev=>Math.max(prev-1, totalPages))
+       setactivePage(prev =>(prev > 1 ? prev -1 : prev))
     }
 
 
@@ -64,7 +64,8 @@ const Index = () => {
           </div>
         </div>
         {/*resturants list */}
-       <div>
+     {
+      loading ? <>  <div>
          <div className="restaurant-container">
           {
             resturantsList.map((eachResturant)=>(
@@ -106,7 +107,8 @@ const Index = () => {
 </svg>
 </button></div>
 
-       </div>
+       </div></>:<div>Loading....</div>
+     }
        
       </div>
     </section>

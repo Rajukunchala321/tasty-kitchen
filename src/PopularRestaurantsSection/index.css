@@ -16,6 +16,7 @@
     font-weight: 400;
     line-height: 100%;
     color:#334155;
+    margin-top: 64px;
 }
 .pagination-num{
     color:#334155;
@@ -85,15 +86,19 @@ center{
     display: flex;
     flex-direction: column;
     gap:14px;
+    align-items: flex-start;
 }
 .restaurant-logo{
     width:160px;
+    height: 100px;
+    border-radius: 8px;
 }
 
 .restaurant{
+    
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    align-items: center;
     gap:16px;
 }
 .pouplar-restaurants-main-container>h2{
