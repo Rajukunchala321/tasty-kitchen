@@ -10,6 +10,7 @@ const Index = () => {
     const [loading , setLoading] = useState(false);
     const [activePage, setactivePage] = useState(1);
     const [totalItems, setTotalItems] = useState(0);
+    const [sortedBy, setSortedby]= useState("Highest");
    
     useEffect(()=>{
       const fetch = async()=>{
@@ -18,7 +19,7 @@ const Index = () => {
             return;
         }
         try{
-          const response = await axios.get(`https://apis.ccbp.in/restaurants-list?offset=${offset}&limit=${limit}`, 
+          const response = await axios.get(`https://apis.ccbp.in/restaurants-list?offset=${offset}&limit=${limit}&sort_by_rating=${sortedBy}`, 
             {
             headers:{
               Authorization: `Bearer ${jwtToken}`,
@@ -35,10 +36,9 @@ const Index = () => {
       }
 
     fetch()
-    },[activePage, jwtToken]);
+    },[activePage, jwtToken, sortedBy]);
    
     const totalPages =Math.ceil(totalItems/limit);
-    console.log(totalPages)
     const handlePageIncrement = ()=>{
        setactivePage(prev=>(prev <totalPages ? prev+1: prev))
     }
@@ -59,8 +59,21 @@ const Index = () => {
             happy...
           </p>
           <div className="filter-container">
-            <img src="" alt="sort" />
-            <p>Sort by Lowest</p>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_13799_11414"  maskUnits="userSpaceOnUse" x="3" y="6" width="18" height="12">
+<path fillRule="evenodd" clipRule="evenodd" d="M3 7C3 7.55 3.45 8 4 8H20C20.55 8 21 7.55 21 7C21 6.45 20.55 6 20 6H4C3.45 6 3 6.45 3 7ZM4 18H8C8.55 18 9 17.55 9 17C9 16.45 8.55 16 8 16H4C3.45 16 3 16.45 3 17C3 17.55 3.45 18 4 18ZM14 13H4C3.45 13 3 12.55 3 12C3 11.45 3.45 11 4 11H14C14.55 11 15 11.45 15 12C15 12.55 14.55 13 14 13Z" fill="#0F172A"/>
+</mask>
+<g mask="url(#mask0_13799_11414)">
+<rect width="24" height="24" fill="#475569"/>
+</g>
+</svg>
+
+            <select onChange={(e)=>{
+                setSortedby(e.target.value)
+            }}>
+              <option value="Highest">Sort by Highest</option>
+              <option value="Lowest">Sort by Lowest</option>
+            </select>
           </div>
         </div>
         {/*resturants list */}
@@ -69,7 +82,7 @@ const Index = () => {
          <div className="restaurant-container">
           {
             resturantsList.map((eachResturant)=>(
-             <div className="restaurant" key={eachResturant.id}>
+             <a href={`/restaurant/${eachResturant.id}`} className="restaurant" key={eachResturant.id}>
             <img src={eachResturant.image_url} alt={`restaurant-${eachResturant.id}`} className="restaurant-logo" />
             <div className="restaurant-content">
               <h3 className="rest-name">{eachResturant.name}</h3>
@@ -93,7 +106,7 @@ const Index = () => {
                 <p className="rating-members">({eachResturant.user_rating.total_reviews} ratings)</p>
               </div>
             </div>
-          </div>
+          </a>
 
           ))
           }
@@ -102,7 +115,7 @@ const Index = () => {
            <div className="pagination-container"><button onClick={handlePageDecrement} className="arrow-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fillRule="evenodd" clipRule="evenodd" d="M9.87352 2L11 3.15074L6.25296 8L11 12.8493L9.87352 14L4.68479 8.69953C4.30425 8.3108 4.30425 7.68919 4.68479 7.30046L9.87352 2Z" fill="#334155"/>
 </svg>
-</button><div>1 of 20</div><button onClick={handlePageIncrement} className="arrow-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+</button><div>{activePage} of 20</div><button onClick={handlePageIncrement} className="arrow-btn"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fillRule="evenodd" clipRule="evenodd" d="M6.12648 14L5 12.8493L9.74704 8L5 3.15074L6.12648 2L11.3152 7.30047C11.6957 7.6892 11.6957 8.31081 11.3152 8.69954L6.12648 14Z" fill="#334155"/>
 </svg>
 </button></div>
