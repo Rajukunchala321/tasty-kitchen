@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import Navbar from './Navbar/Index.js'
+import Navbar from './Navbar'
 import SliderSection from './SliderSection/Index.js';
 import LoginForm from './LoginForm/Index.js'
 import Restaurant from './RestaurantPage/Index.js'
