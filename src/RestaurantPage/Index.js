@@ -1,21 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext  } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { Navigate } from "react-router-dom";
 import "./Index.css";
+import {CartContext} from '../Provider/Index.js'
 const Index = () => {
   let restrauntId = window.location.pathname.slice(12);
 
   const jwtToken = Cookies.get("jwt_token");
   const [data, setData] = useState([]);
-  const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
+  const {cart, addItem, removeItem } = useContext(CartContext)
 
   useEffect(() => {
     const fetchMenu = async () => {
       if (!jwtToken) {
         return;
       }
+      setLoading(true)
 
       try {
         const response = await axios.get(
@@ -28,50 +30,24 @@ const Index = () => {
         );
         console.log(response.data);
         setData(response.data);
+        setLoading(false)
       } catch (err) {
         console.log(err);
+        setLoading(false)
       }
     };
     fetchMenu();
-  }, [jwtToken]);
+  }, [jwtToken, restrauntId]);
 
   if (jwtToken === undefined) {
     return <Navigate to="/login" replace />;
   }
   const items = data.food_items || [];
 
-  const addItem =(item)=>{
-    const exists = cart.find((each)=> each.id===item.id);
-    if(exists){
-      setCart(
-        cart.map((eachCart)=>(
-          eachCart.id === item.id ? {...eachCart, quantity: eachCart.quantity+1} : eachCart
-        ))
-      )
-    }else{
-      setCart([...cart, {...item, quantity:1}])
-    }
-
-  }
-
-  const removeItem = (item)=>{
-    const exists = cart.find((each)=>(
-      each.id === item.id
-    ))
-    if(exists.quantity === 1){
-      setCart(cart.filter((c) => c.id !== item.id))
-     
-    }else{
-      setCart(
-        cart.map((eachCart)=>(
-          eachCart.id === item.id ? {...eachCart, quantity: eachCart.quantity-1} : eachCart
-        ))
-      )
-    }
-  }
-
   return (
-    <section>
+
+  
+    loading ? (<div>loading</div> ) : (  <section>
       <div className="resturant-main-container">
         <div className="resturant-banner-section">
           <div className="main-container">
@@ -158,8 +134,10 @@ const Index = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>)
+  
+  
+  )
 };
 
 export default Index;

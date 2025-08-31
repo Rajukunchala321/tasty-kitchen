@@ -1,6 +1,10 @@
-import React from "react";
+import React ,{useContext} from "react";
 import "./Index.css";
+import { CartContext } from "../Provider/Index";
 export default function Index() {
+  const {cart} = useContext(CartContext);
+
+
   return (
     <nav>
       <div className="nav-container">
@@ -10,9 +14,16 @@ export default function Index() {
         </div>
 
         <ul>
-          <li>Home</li>
-          <li>Cart</li>
-          <button>logout</button>
+          <a href="/">
+            <li>Home</li>
+          </a>
+        
+          <a href="/restaurant/cart">
+           <li >Cart - {cart.length }</li>
+
+          </a>
+         
+          <button>logout </button>
         </ul>
       </div>
     </nav>
