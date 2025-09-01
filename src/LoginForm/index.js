@@ -58,8 +58,19 @@ export class Index extends Component {
 
 
         }catch(error){
-            console.log(error);
-            this.setState({showSubmitError:true, errorMsg:error})
+           
+  console.log(error);
+
+  let errMsg = "Something went wrong";
+  if (error.response && error.response.data && error.response.data.error_msg) {
+    errMsg = error.response.data.error_msg;  
+  } else if (error.message) {
+    errMsg = error.message; 
+  }
+
+  this.setState({ showSubmitError: true, errorMsg: errMsg });
+
+
 
         }
 
@@ -89,6 +100,12 @@ export class Index extends Component {
                         <button type='submit' >Login</button>
                         {showSubmitError && <p className='errormsg'>*{errorMsg}</p>}
                     </form>
+
+                    <div className='credits'>
+                        username: rahul
+                         <br/>
+                        password: rahul@2021
+                    </div>
 
                 </div>
             </div>
