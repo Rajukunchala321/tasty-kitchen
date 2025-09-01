@@ -43,11 +43,11 @@ center{
      margin: 0px;
 
 }
-.rating{
+.rating-number{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 14px;
     font-weight: 400px;
-    color:#1E293B;
+    color:#1E293B ;
     margin: 0px;
 
 }

@@ -102,7 +102,7 @@ const Index = () => {
                     fill="#FFCC00"
                   />
                 </svg>
-                <p className="rating">{eachResturant.user_rating.rating}</p>
+                <p className="rating-number">{eachResturant.user_rating.rating}</p>
                 <p className="rating-members">({eachResturant.user_rating.total_reviews} ratings)</p>
               </div>
             </div>
