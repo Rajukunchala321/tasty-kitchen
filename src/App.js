@@ -2,10 +2,10 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Navbar from './Navbar'
 import SliderSection from './SliderSection/index.js';
-import LoginForm from './LoginForm/index.js'
-import Restaurant from './RestaurantPage/index.js'
-import CheckOutPage from './CheckOutPage/index.js'
-import NotFound from './NotFound/index.js'
+import LoginForm from './LoginForm';
+import Restaurant from './RestaurantPage';
+import CheckOutPage from './CheckOutPage';
+import NotFound from './NotFound';
 
 export default function App() {
   return (
