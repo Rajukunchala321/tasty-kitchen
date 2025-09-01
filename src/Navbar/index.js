@@ -1,9 +1,17 @@
 import React ,{useContext} from "react";
-import "./Index.css";
+import "./index.css";
 import { CartContext } from "../Provider/Index";
+import Cookies from "js-cookie";
+import {useNavigate} from 'react-router-dom'
 export default function Index() {
   const {cart} = useContext(CartContext);
+  const navigate= useNavigate()
+  const handleLogout= ()=>{
+    Cookies.remove("jwt_token");
+    console.log('clicked');
+    navigate('/login', {replace:true})
 
+  }
 
   return (
     <nav>
@@ -12,7 +20,6 @@ export default function Index() {
           <img src="./assests/logo.png" alt="logo" />
           <p>Tasty Kitchens</p>
         </div>
-
         <ul>
           <a href="/">
             <li>Home</li>
@@ -20,10 +27,8 @@ export default function Index() {
         
           <a href="/restaurant/cart">
            <li >Cart - {cart.length }</li>
-
           </a>
-         
-          <button>logout </button>
+          <button onClick={()=>handleLogout()}>logout</button>
         </ul>
       </div>
     </nav>

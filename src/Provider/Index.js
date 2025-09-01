@@ -48,7 +48,6 @@ export const CartContext = createContext();
     return(
         <CartContext.Provider value={{cart, setCart,  addItem, removeItem}} >
             {children }
-
         </CartContext.Provider>
     )
 } 

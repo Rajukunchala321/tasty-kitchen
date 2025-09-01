@@ -50,7 +50,7 @@ const Index = () => {
     loading ? (<div>loading</div> ) : (  <section>
       <div className="resturant-main-container">
         <div className="resturant-banner-section">
-          <div className="main-container">
+          <div className="banner-main-container">
             <div className="banner-card">
               <img src={data.image_url} alt="banner img" />
               <div className="banner-content">

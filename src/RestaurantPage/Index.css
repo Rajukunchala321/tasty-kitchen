@@ -75,7 +75,6 @@
 .item-content{
     display: flex;
     flex-direction: column;
-    gap:9px;
     align-items: flex-start;
 }
 .item-container{
@@ -180,7 +179,7 @@ p{
     gap:30px;
 }
 
-.main-container{
+.banner-main-container{
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;

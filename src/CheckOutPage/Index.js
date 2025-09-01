@@ -1,14 +1,19 @@
 import React, { useContext, useState } from "react";
 import "./Index.css";
 import { CartContext } from "../Provider/Index.js";
-
+import Cookies from "js-cookie";
+import {Navigate} from 'react-router-dom';
 const Index = () => {
   const { cart, addItem, removeItem } = useContext(CartContext);
   const [isOrderPlace, setOrderPlace] = useState(false);
+  const jwtToken = Cookies.get('jwt_token')
 
   const handleOrderPlaced = () => {
     setOrderPlace(true);
   };
+   if (jwtToken === undefined) {
+    return <Navigate to="/login" replace />;
+  }
 
   return (
     <>
