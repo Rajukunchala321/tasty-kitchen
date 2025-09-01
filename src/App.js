@@ -1,11 +1,11 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Navbar from './Navbar'
-import SliderSection from './SliderSection/Index.js';
-import LoginForm from './LoginForm/Index.js'
-import Restaurant from './RestaurantPage/Index.js'
-import CheckOutPage from './CheckOutPage/Index.js'
-import NotFound from './NotFound/Index.js'
+import SliderSection from './SliderSection/index.js';
+import LoginForm from './LoginForm/index.js'
+import Restaurant from './RestaurantPage/index.js'
+import CheckOutPage from './CheckOutPage/index.js'
+import NotFound from './NotFound/index.js'
 
 export default function App() {
   return (

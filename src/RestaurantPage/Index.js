@@ -2,8 +2,8 @@ import React, { useState, useEffect, useContext  } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { Navigate } from "react-router-dom";
-import "./Index.css";
-import {CartContext} from '../Provider/Index.js'
+import "./index.css";
+import {CartContext} from '../Provider/index.js'
 const Index = () => {
   let restrauntId = window.location.pathname.slice(12);
 

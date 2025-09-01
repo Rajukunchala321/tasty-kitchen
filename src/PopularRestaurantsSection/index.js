@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from "react";
 import axios from "axios";
-import "./Index.css";
+import "./index.css";
 import Cookies from "js-cookie";
 const Index = () => {
    

@@ -1,7 +1,7 @@
 import React,  { useState, useEffect} from 'react';
-import './Index.css'
+import './index.css'
 import Slider from "react-slick";
-import PopularRestaurantsSection from '../PopularRestaurantsSection/Index.js';
+import PopularRestaurantsSection from '../PopularRestaurantsSection/index.js';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import {Navigate} from 'react-router-dom'

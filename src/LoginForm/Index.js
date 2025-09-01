@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import'./Index.css'
+import'./index.css'
 import {Navigate} from 'react-router-dom'
 import Cookies from 'js-cookie'
 

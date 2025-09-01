@@ -1,5 +1,5 @@
 import React from 'react'
-import './Index.css'
+import './index.css'
  const Index = () => {
   return (
     <div className='notfound-page' > 404 Error</div>

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import "./Index.css";
-import { CartContext } from "../Provider/Index.js";
+import "./index.css";
+import { CartContext } from "../Provider/index.js";
 import Cookies from "js-cookie";
 import {Navigate} from 'react-router-dom';
 const Index = () => {
